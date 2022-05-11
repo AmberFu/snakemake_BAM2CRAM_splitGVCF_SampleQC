@@ -21,3 +21,16 @@ Snakemake Pipeline of BAM to CRAM and SampleQC
 3. [BAM to CRAM] `samtools view -C ...` form wrapper - https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/samtools/view.html
 4. [Split GVCF] `gatk SelectVariants ...` form wrapper - https://snakemake-wrappers.readthedocs.io/en/stable/wrappers/gatk/selectvariants.html
 
+
+### Steps:
+
+1. Create Folder Structure (2022/05/11)
+
+```
+[fup@compute1-client-3 snakemake_BAM2CRAM_splitGVCF_SampleQC]$ mkdir workflow
+[fup@compute1-client-3 snakemake_BAM2CRAM_splitGVCF_SampleQC]$ touch workflow/snakefile
+[fup@compute1-client-3 snakemake_BAM2CRAM_splitGVCF_SampleQC]$ mkdir workflow/rules
+[fup@compute1-client-3 snakemake_BAM2CRAM_splitGVCF_SampleQC]$ mkdir config
+```
+
+2. 
