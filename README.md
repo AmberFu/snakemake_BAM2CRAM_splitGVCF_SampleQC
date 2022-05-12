@@ -7,6 +7,7 @@ Snakemake Pipeline of BAM to CRAM and SampleQC
 
 ### Singleton WGS SNP/Indel pipeline
 
+0. [sankemake] BAM/CRAM to FASTQ for WGS
 1. [BASH] Parabricks Germline pipeline (Functional Equivalence)
 2. **[Sankemake] BAM2CRAM_splitGVCF_SampleQC (This Repo)**
 3. [Sankemake ?!] Joint-calling - Hail runCombiner
