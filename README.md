@@ -13,9 +13,9 @@ bsub -q general -G compute-jin810 -J snakemake -N -u fup@wustl.edu \
 -g /fup/jobGroup_2_snakemake \
 -a 'docker(spashleyfu/snakemake_bammetrics:latest)' \
 snakemake --use-conda -j 10 \
---cluster-config /storage1/fs1/jin810/Active/fup/Snakemake_WGS_pipeline_JinLab/config/cluster.json \
+--cluster-config /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/config/cluster.json \
 --cluster "bsub -q general -G compute-jin810 -oo {cluster.log} -eo {cluster.err} -M {cluster.mem} -n {cluster.core} -R {cluster.resources} -g {cluster.jobgroup} -a 'docker({cluster.image})'" \
--s /storage1/fs1/jin810/Active/fup/Snakemake_WGS_pipeline_JinLab/workflow/snakefile
+-s /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/workflow/snakefile
 ```
 
 
