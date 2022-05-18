@@ -53,6 +53,40 @@ snakemake --use-conda -j 10 \
 2. QC + BAM2CRAM
 
 ```
+// Second run
+(snakemake) fup@compute1-exec-135:/storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC$ snakemake --rerun-incomplete -c12 --use-conda
+Building DAG of jobs...
+Creating conda environment https://github.com/snakemake/snakemake-wrappers/raw/v1.5.0/bio/verifybamid/verifybamid2/environment.yaml...
+Downloading and installing remote packages.
+Environment for https://github.com/snakemake/snakemake-wrappers/raw/v1.5.0/bio/verifybamid/verifybamid2/environment.yaml created (location: .snakemake/conda/26630509f0b0cface7fde1b2a712e492)
+Using shell: /bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                       count    min threads    max threads
+----------------------  -------  -------------  -------------
+KnightBamMetrics              6              4              4
+all                           1              1              1
+combinedBamMetrics            1              1              1
+generateBamMetricsList        1              1              1
+verify_bam_id                 9              1              1
+total                        18              1              4
+
+Select jobs to execute...
+
+[Wed May 18 20:37:10 2022]
+rule KnightBamMetrics:
+    input: /storage1/fs1/bga/Active/gmsroot/gc2560/core/model_data/2887491634/build21f22873ebe0486c8e6f69c15435aa96/all_sequences.fa, /storage1/fs1/jin810/Active/Neuropathy_WGS_2021May/Neuropathy_batch2/pbOut_v2/pb_germline/TWHJ-PNRR-10023/TWHJ-PNRR-10023_germline.bam, /storage1/fs1/jin810/Active/Neuropathy_WGS_2021May/Neuropathy_batch2/pbOut_v2/pb_germline/TWHJ-PNRR-10023/TWHJ-PNRR-10023_germline.bam.bai
+    output: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/results/KnightBamMetrics/TWHJ-PNRR-10023_bam_metrics.txt
+    log: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/logs/KnightBamMetrics/TWHJ-PNRR-10023_KnightBamMetrics.log
+    jobid: 14
+    wildcards: sample=TWHJ-PNRR-10023
+    threads: 4
+    resources: tmpdir=/tmp/312002.tmpdir, mem_mb=10000
+...
+
+
+// Failed...because I didn't install VerifyBamID2
 (snakemake) fup@compute1-exec-135:/rdcw/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC$ snakemake -c12 --use-conda
 Building DAG of jobs...
 Using shell: /bin/bash
@@ -93,7 +127,18 @@ rule KnightBamMetrics:
 
 ...
 
+[Wed May 18 19:25:58 2022]
+Error in rule verify_bam_id:
+    jobid: 7
+    output: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/results/verifyBamID2/TWHJ-PNRR-10052.selfSM, /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/results/verifyBamID2/TWHJ-PNRR-10052.Ancestry
+    log: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/logs/verifybamid2/TWHJ-PNRR-10052_verifybamid2.log (check log file(s) for error message)
+    conda-env: /rdcw/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/.snakemake/conda/5f46c514e2aa2caac7dab83e2cddae02
 
+RuleException:
+CalledProcessError in line 23 of /rdcw/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/workflow/rules/QC_verifyBam.smk:
+Command 'source /opt/conda/bin/activate '/rdcw/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/.snakemake/conda/5f46c514e2aa2caac7dab83e2cddae02'; set -euo pipefail;  /opt/conda/envs/snakemake/bin/python3.10 /rdcw/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/.snakemake/scripts/tmp2elymp1l.wrapper.py' returned non-zero exit status 1.
+  File "/rdcw/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/workflow/rules/QC_verifyBam.smk", line 23, in __rule_verify_bam_id
+  File "/opt/conda/envs/snakemake/lib/python3.10/concurrent/futures/thread.py", line 58, in run
 
 ```
 
