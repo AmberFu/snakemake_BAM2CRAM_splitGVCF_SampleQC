@@ -18,6 +18,9 @@ snakemake --use-conda -j 10 \
 -s /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/workflow/snakefile
 ```
 
+```
+bsub -Is -G compute-jin810 -q general-interactive -n 12 -M 12GB -R 'select[mem>12GB] span[hosts=1] rusage[mem=12GB]' -a 'docker(spashleyfu/snakemake_bammetrics:verifybamid2)' /bin/bash
+```
 
 ### Singleton WGS SNP/Indel pipeline
 
@@ -53,6 +56,9 @@ snakemake --use-conda -j 10 \
 2. QC + BAM2CRAM
 
 ```
+// Test mode:
+bsub -Is -G compute-jin810 -q general-interactive -n 12 -M 12GB -R 'select[mem>12GB] span[hosts=1] rusage[mem=12GB]' -a 'docker(spashleyfu/snakemake_bammetrics:verifybamid2)' /bin/bash
+
 // Second run
 (snakemake) fup@compute1-exec-135:/storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC$ snakemake --rerun-incomplete -c12 --use-conda
 Building DAG of jobs...
