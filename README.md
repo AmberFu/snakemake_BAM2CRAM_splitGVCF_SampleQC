@@ -48,7 +48,56 @@ snakemake --use-conda -j 10 \
 [fup@compute1-client-3 snakemake_BAM2CRAM_splitGVCF_SampleQC]$ mkdir config
 ```
 
-2. BAM2CRAM actual run:
+
+
+2. QC + BAM2CRAM
+
+```
+(snakemake) fup@compute1-exec-135:/rdcw/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC$ snakemake -c12 --use-conda
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                       count    min threads    max threads
+----------------------  -------  -------------  -------------
+KnightBamMetrics             10              4              4
+all                           1              1              1
+combinedBamMetrics            1              1              1
+generateBamMetricsList        1              1              1
+verify_bam_id                10              1              1
+total                        23              1              4
+
+Select jobs to execute...
+
+[Wed May 18 18:50:02 2022]
+rule KnightBamMetrics:
+    input: /storage1/fs1/bga/Active/gmsroot/gc2560/core/model_data/2887491634/build21f22873ebe0486c8e6f69c15435aa96/all_sequences.fa, /storage1/fs1/jin810/Active/Neuropathy_WGS_2021May/Neuropathy_batch2/pbOut_v2/pb_germline/TWHJ-PNRR-10002/TWHJ-PNRR-10002_germline.bam, /storage1/fs1/jin810/Active/Neuropathy_WGS_2021May/Neuropathy_batch2/pbOut_v2/pb_germline/TWHJ-PNRR-10002/TWHJ-PNRR-10002_germline.bam.bai
+    output: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/results/KnightBamMetrics/TWHJ-PNRR-10002_bam_metrics.txt
+    log: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/logs/KnightBamMetrics/TWHJ-PNRR-10002_KnightBamMetrics.log
+    jobid: 12
+    wildcards: sample=TWHJ-PNRR-10002
+    threads: 4
+    resources: tmpdir=/tmp/306578.tmpdir, mem_mb=10000
+
+
+[Wed May 18 18:50:03 2022]
+rule KnightBamMetrics:
+    input: /storage1/fs1/bga/Active/gmsroot/gc2560/core/model_data/2887491634/build21f22873ebe0486c8e6f69c15435aa96/all_sequences.fa, /storage1/fs1/jin810/Active/Neuropathy_WGS_2021May/Neuropathy_batch2/pbOut_v2/pb_germline/TWHJ-PNRR-10017/TWHJ-PNRR-10017_germline.bam, /storage1/fs1/jin810/Active/Neuropathy_WGS_2021May/Neuropathy_batch2/pbOut_v2/pb_germline/TWHJ-PNRR-10017/TWHJ-PNRR-10017_germline.bam.bai
+    output: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/results/KnightBamMetrics/TWHJ-PNRR-10017_bam_metrics.txt
+    log: /storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC/logs/KnightBamMetrics/TWHJ-PNRR-10017_KnightBamMetrics.log
+    jobid: 13
+    wildcards: sample=TWHJ-PNRR-10017
+    threads: 4
+    resources: tmpdir=/tmp/306578.tmpdir, mem_mb=10000
+
+...
+
+
+
+```
+
+3. BAM2CRAM actual run:
 
 ```
 (snakemake) fup@compute1-exec-132:/storage1/fs1/jin810/Active/PCGC_CHD_IncRNA_2022/snakemake_BAM2CRAM_splitGVCF_SampleQC$ snakemake --use-conda -c4
